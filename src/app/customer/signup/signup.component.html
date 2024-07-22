@@ -8,9 +8,17 @@
                         <label for="name">Name</label>
                         <input type="text" class="form-control" formControlName="name">
                     </div>
+                    <div *ngIf="signUpForm.controls['name'].invalid && (signUpForm.controls['name'].dirty || signUpForm.controls['name'].touched)" class="text-danger">
+                        <span *ngIf="signUpForm.controls['name'].errors?.['required']">Name is required</span>
+                        <span *ngIf="signUpForm.controls['name'].errors?.['minlength']">Name should have atleast 3 characters</span>
+                    </div>
                     <div class="form-group">
                         <label for="mobNumber">Mobile Number</label>
                         <input type="tel" class="form-control" formControlName="mobNumber">
+                    </div>
+                    <div *ngIf="signUpForm.controls['mobNumber'].invalid && (signUpForm.controls['mobNumber'].dirty || signUpForm.controls['mobNumber'].touched)" class="text-danger">
+                        <span *ngIf="signUpForm.controls['mobNumber'].errors?.['required']">Mobile Number is required</span>
+                        <span *ngIf="signUpForm.controls['mobNumber'].errors?.['minlength']">Mobile Number should have atleast 10 characters</span>
                     </div>
                     <div class="form-group">
                         <label for="age">Enter Age</label>
@@ -27,11 +35,19 @@
                             <input type="email" class="form-control" placeholder="johndoe@example.com"
                                 formControlName="email">
                         </div>
+                        <div *ngIf="signUpForm.controls['email'].invalid && (signUpForm.controls['email'].dirty || signUpForm.controls['email'].touched)" class="text-danger">
+                            <span *ngIf="signUpForm.controls['email'].errors?.['required']">Email is required</span>
+                            <span *ngIf="signUpForm.controls['email'].errors?.['email']">Email is not valid</span>
+                        </div>                        
                         <div class="form-group col-md-6">
                             <label for="password">Password</label>
                             <input type="password" class="form-control" placeholder="Password"
                                 formControlName="password">
                         </div>
+                        <div *ngIf="signUpForm.controls['password'].invalid && (signUpForm.controls['password'].dirty || signUpForm.controls['password'].touched)" class="text-danger">
+                            <span *ngIf="signUpForm.controls['password'].errors?.['required']">Password is required</span>
+                            <span *ngIf="signUpForm.controls['password'].errors?.['minlength']">Password should have atleast 6 characters</span>
+                        </div>                 
                         <div class="form-group">
                             <label for="address">Address-# 1</label>
                             <input type="text" class="form-control" placeholder="1234 Main St"

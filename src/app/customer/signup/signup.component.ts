@@ -27,12 +27,12 @@ export class SignupComponent {
   ngOnInit(): void {
 
     this.signUpForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      mobNumber: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      mobNumber: ['', [Validators.required, Validators.minLength(10)]],
       age: ['', Validators.required],
       dob: ['', Validators.required],
-      email: ['', [Validators.required,]],
-      password: ['', [Validators.required,]],
+      email: ['', [Validators.required,Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       addLine1: ['', Validators.required],
       addLine2: [''],
       city: ['', Validators.required],
