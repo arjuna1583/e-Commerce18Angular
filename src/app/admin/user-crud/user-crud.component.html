@@ -1,0 +1,175 @@
+<div class="row mt-3 container-fluid">
+    <div class="col-10 text-start float-end">
+        <strong class="me-2">All User List</strong>
+    </div>
+    <div class="col-2 text-end">
+        <button class="btn btn-dark btn-sm" type="button" (click)="addUserPopup()" data-bs-toggle="modal"
+            data-bs-target="#addEditUserModal" style="width: max-content;">Add New User</button>
+    </div>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">DOB</th>
+            <th scope="col">City</th>
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of allUser; index as i">
+            <th scope="row">{{i+1}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.mobNumber}}</td>
+            <td>{{user.dob}}</td>
+            <td>{{user.address.city}}</td>
+            <td>{{user.role}}</td>
+            <td>
+                <span class="sim-pointer mx-1" (click)="editUserPopup(user.id)" data-bs-toggle="modal"
+                    data-bs-target="#addEditUserModal">Edit</span>
+                <span class="sim-pointer mx-1" (click)="deleteUser(user.id)">Del</span>
+            </td>
+    </tbody>
+</table>
+<!-- Modal for Add / Edit user -->
+<div class="modal fade" id="addEditUserModal" tabindex="-1" role="dialog" aria-labelledby="addEditUserModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-between">
+                <h5 class="modal-title align-self-start">{{popupHeader}}</h5>
+                <button type="button" class="close align-self-start" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1"> 
+                        <form [formGroup]="addEditUserForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" formControlName="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="mobNumber">Mobile Number</label>
+                                <input type="tel" class="form-control" formControlName="mobNumber">
+                            </div>
+                            <div class="form-group">
+                                <label for="age">Enter Age</label>
+                                <input type="number" class="form-control" formControlName="age">
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Enter Date of birth</label>
+                                <input type="date" class="form-control" formControlName="dob">
+                            </div>
+                            <!--------New Row-------->
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" placeholder="johndoe@example.com"
+                                        formControlName="email">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" placeholder="Password"
+                                        formControlName="password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">Address-# 1</label>
+                                    <input type="text" class="form-control" placeholder="1234 Main St"
+                                        formControlName="addLine1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="address2">Address-# 2</label>
+                                    <input type="text" class="form-control" placeholder="Apartment, studio, or floor"
+                                        formControlName="addLine2">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="city">City</label>
+                                    <input type="text" class="form-control" placeholder="City" formControlName="city">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="state">State</label>
+                                    <select class="form-control" formControlName="state">
+                                        <option value="" selected>Choose...</option>
+                                        <option value="AP">Andhra Pradesh</option>
+                                        <option value="KA">Karnataka</option>
+                                        <option value="KL">Kerala</option>
+                                        <option value="TG">Telangana</option>
+                                        <option value="TN">Tamil Nadu</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="zipCode">Zip</label>
+                                    <input type="text" class="form-control" placeholder="Zip" formControlName="zipCode">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="language">Language</label>
+                                <select multiple class="form-control" formControlName="language">
+                                    <option value="" selected>Choose...</option>
+                                    <option value="TE">Telugu</option>
+                                    <option value="HI">Hindi</option>
+                                    <option value="EN">English</option>
+                                    <option value="OT">Others</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" class="form-check-inline" formControlName="gender" value="Male">
+                                    <label for="male" class="form-check-label">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" class="form-check-inline" formControlName="gender" value="Female">
+                                    <label for="female" class="form-check-label">Female</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="radio" class="form-check-inline" formControlName="gender" value="Other">
+                                    <label for="other" class="form-check-label">Other (disabled)</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="aboutYou">Tell us about yourself</label>
+                                <textarea class="form-control" rows="3" formControlName="aboutYou"
+                                    placeholder="Type here..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="uploadPhoto">Upload your photo</label>
+                                <span *ngIf="editUser"><br>{{uploadFileName}}<br> <span><a
+                                    href={{uploadFileName}}>Preview</a></span></span><br>
+                                <input type="file" class="form-control-file" formControlName="uploadPhoto">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="role">What do you want?</label>
+                                <select class="form-control" formControlName="role">
+                                    <option value="" selected>Choose...</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Seller">Sell</option>
+                                    <option value="Buyer">Buy</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" formControlName="agreetc">
+                                    <label for="gridCheck" class="form-check-label">Agree our Terms & Conditions</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary my-2" data-bs-dismiss="modal" (click)="addUserForm()" *ngIf="addUser">Register</button>
+                                <button class="btn btn-primary my-2" data-bs-dismiss="modal" (click)="editUserForm()" *ngIf="editUser">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

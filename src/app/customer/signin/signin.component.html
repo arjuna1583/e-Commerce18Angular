@@ -1,0 +1,24 @@
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h3>Login - Template driven form with validation</h3>
+                <form name="loginForm" #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && onSubmitSignIn()" novalidate>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="userEmail" class="form-control" [(ngModel)]="signInFormValue.email" #email="ngModel" required email>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="userPassword" class="form-control" [(ngModel)]="signInFormValue.password" #password="ngModel" minlength="6" togglePassword>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary my-2">Login</button>
+                    </div>
+                </form>
+                <!--Login link here-->
+                <p class="sim-pointer cursor" routerLink="/sign-up">Don't have an account? Click here to register</p>
+            </div>
+        </div>
+    </div>
+</div>

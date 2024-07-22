@@ -1,0 +1,25 @@
+<nav aria-label="breadcrumb mt-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Buyer</a></li>
+        <li class="breadcrumb-item"><a routerLink="/buyer-dashboard">Products</a></li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-sm-4 product" *ngFor="let product of allProducts">
+<div class="card">
+    <img src="{{product.uploadPhoto}}" alt="{{product.name}}" class="card-img-top">
+    <div class="card-body">
+        <h4 class="card-title">{{product.name}}</h4>
+        <p class="mb-1">
+            <span class="float-left"><strong>Price: </strong><del class="mx-1">{{product.mrp}}</del></span>
+            <span class="float-right"><strong>Discount Price: </strong><span class="mx-1">{{product.dp}}</span></span>
+        </p>
+        <p class="card-text product-desc">{{product.productDesc}}</p>
+        <div class="d-flex justify-content-between">
+            <a (click)="addToCart()" class="btn btn-primary float-left">Add to cart</a>
+            <a (click)="buyProduct(product.id)" class="btn btn-warning float-right">Buy Now</a>
+        </div>
+    </div>
+</div>
+    </div>
+</div>

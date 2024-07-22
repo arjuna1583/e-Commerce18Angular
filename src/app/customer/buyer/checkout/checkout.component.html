@@ -1,0 +1,51 @@
+<nav aria-label="breadcrumb mt-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="/buyer-dashboard">Buyer</a></li>
+        <li class="breadcrumb-item active">Checkout</li>
+    </ol>
+</nav>
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header text-bold">Product detail</div>
+            <div class="card-body product-detail">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{singleProduct.uploadPhoto}}" alt="{{singleProduct.name}}" class="card-img-top" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="h4 text-bold card-title mb-2">{{singleProduct.name}}</div>
+                        <p class="card-text product-desc">{{singleProduct.productDesc}}</p>
+                        <p class="mb-1">
+                            <span class="float-left"><strong>Price: </strong><del
+                                    class="mx-1">{{singleProduct.mrp}}</del></span>
+                            <span class="float-right"><strong>Discount Price: </strong><span
+                                    class="mx-1">{{singleProduct.dp}}</span></span>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header text-bold">Address Detail</div>
+            <div class="card-body">
+                <h5 class="card-title text-bold">{{userAddressDetail.name}}</h5>
+                <p class="card-text">{{userAddressDetail.addLine1}}, {{userAddressDetail.addLine2}}</p>
+                <p class="card-text">{{userAddressDetail.city}}, {{userAddressDetail.state}}</p>
+                <p class="card-text">Postal Code: {{userAddressDetail.zipCode}}</p>
+                <p class="card-text">Contact Number: {{userContactNumber}}</p>
+                <a (click)="placeOrder()" class="btn btn-primary">Deliver Here ☻</a>
+                <div class="alert alert-info mt-3" role="alert">
+                    <strong>Note:</strong>
+                    we are not giving multiple address addition, if you want to deliver in diffrent address for now
+                    change the address in
+                    <span routerLink="/my-profile" class="text-info sim-pointer">My profile</span>
+                    Section.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
